@@ -48,4 +48,4 @@ A whole list of accepted API Key Names can be found [https://developer.github.co
 #### satt [\<stash name>\] (Stash All The Things)
 `satt` will allow you to easily stash all the files in the current working repository with a given name. The output will be list of all files added to the stash.
 ###### Stash Everything:
-`catt “stash-ah-ahhh”`
+`satt “stash-ah-ahhh”`
