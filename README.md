@@ -18,7 +18,7 @@ source ~/.zsh/git.zsh
 …
 ```
 ###### Github
-A couple of these scripts require a Github API Access Token using the `GITHUB_ACCESS_TOKEN` variable. You can [https://github.com/settings/applications#personal-access-tokens](generate a token here). Define your token either within `.zshrc` or create a new file specifically for sensitive variables. I use a `.zshvars` file in the home directory and include it as above.
+A couple of these scripts require a Github API Access Token using the `GITHUB_ACCESS_TOKEN` variable. You can [generate a token here](https://github.com/settings/applications#personal-access-tokens). Define your token either within `.zshrc` or create a new file specifically for sensitive variables. I use a `.zshvars` file in the home directory and include it as above.
 
 # How to use the Commands
 ### git.zsh
