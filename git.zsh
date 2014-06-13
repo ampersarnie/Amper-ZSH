@@ -76,6 +76,8 @@ catt() {
     git add --all
     git commit -am $1 -q
     git push -q
+    log=$(log --name-status HEAD^..HEAD)
+    echo log
 }
 
 # Stash All The Things
