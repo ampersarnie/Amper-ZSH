@@ -72,11 +72,10 @@ gh-create-repo() {
 # Usage: catt <commit message>
 # Example: $ catt "Fix all the things!"
 catt() {
-    git init
-    git status
+    git init -q
     git add --all
-    git commit -am $1
-    git push
+    git commit -am $1 -q
+    git push -q
 }
 
 # Stash All The Things
