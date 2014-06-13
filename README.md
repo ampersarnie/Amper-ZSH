@@ -38,7 +38,7 @@ The `ghint` command is very much the same as the `gint` comment except it will a
 ###### Create a repository without a wiki and add a description
 `ghint name:”Awesome Source” has_wiki:false description:”This is where I add all the awesome.”`
 
-A whole list of accepted API Key Names can be found [https://developer.github.com/v3/repos/#create](here).
+A whole list of accepted API Key Names can be found [here](https://developer.github.com/v3/repos/#create).
 
 #### catt [\<commit message>\] (Commit All The Things)
 `catt` allows you to commit every file in the current working repository. Once committed the log for that commit will be outputted.
