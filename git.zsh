@@ -9,7 +9,7 @@
 # Example: $ gint origin https://example.com/user/repo.git
 gint() {
     git init
-    touch README
+    touch README.md
     touch .gitignore
     echo ".gitignore" >> .gitignore
     if [[ ! -z $1 && ! -z $2 ]];
