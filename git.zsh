@@ -16,7 +16,7 @@ gint() {
         then
             git remote add $1 $2
     else
-        echo "To add a remote repository use the following command:"
+        echo "$fg[red]To add a remote repository use the following command:"
         echo "git remote add origin https://example.com/user/repo.git"
     fi
 }
@@ -41,7 +41,7 @@ ghint() {
             git remote add origin $repo
             git push -u origin master
     else
-        echo "Oops! You haven't defined a repo."
+        echo "$fg[red]Oops! You haven't defined a repo."
         echo "Usage: ghint <repo name>"
     fi
 }
@@ -62,7 +62,7 @@ gh-create-repo() {
             echo $sshurl
 
     else
-        echo "Oops! You haven't defined a repo."
+        echo "$fg[red]Oops! You haven't defined a repo."
         echo "Usage: gh-create-repo <repo name>"
     fi
 }
