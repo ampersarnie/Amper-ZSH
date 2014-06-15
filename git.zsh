@@ -11,7 +11,7 @@ gint() {
         then
             git remote add $1 $2
     else
-        print -P "$FG[208]To add a remote repository use the following command:\n$FX[reverse]git remote add origin https://example.com/user/repo.git$FX[reset]"
+        print -P "${message_default}To add a remote repository use the following command:\n$FX[reverse]git remote add origin https://example.com/user/repo.git$FX[reset]"
     fi
 
     message=".git created in "$(cpwd)
@@ -43,8 +43,7 @@ ghint() {
             git remote add origin $repo
             git push -u origin master
     else
-        echo "$fg[red]Oops! You haven't defined a repo."
-        echo "Usage: ghint <repo name>"
+        print -P "${message_error}Oops! You haven't defined a repo.\nUsage: ghint <repo name>"
     fi
 }
 
@@ -90,7 +89,7 @@ gh-create-repo() {
         then
             gh-has-access-token;
     else
-        echo "$fg[red]An argument of 'name:\"Repository Name\"' is required to be able to create a repository on Github."
+        print -P "${message_error}An argument of 'name:\"<Repository Name>\"' is required to be able to create a repository on Github."
         die
     fi
 
@@ -100,9 +99,9 @@ gh-create-repo() {
 
     if [ "$sshurl" ];
         then
-            echo $sshurl
+            print -P $message_none$sshurl
     else
-        echo "$fg[red]There was a problem creating the repo on Github."
+        print -P "${message_error}There was a problem creating the repo on Github."
     fi
 }
 
@@ -126,9 +125,7 @@ satt() {
     git init
     git add --all
     git stash save $1
-    echo "-----------------------------------"
-    echo "Stashed files in $1"
-    echo "-----------------------------------"
+    print -P "${message_none}Stashed files in $1"
     gsl
 }
 
@@ -143,7 +140,7 @@ gsl() {
 gh-has-access-token() {
     if [[ -z $GITHUB_ACCESS_TOKEN ]];
         then
-            echo "$fg[red]Please set the GITHUB_ACCESS_TOKEN variable."
+            echo "${message_error}Please set the GITHUB_ACCESS_TOKEN variable."
     fi
 
     if [[ -z $GITHUB_ACCESS_TOKEN ]];
