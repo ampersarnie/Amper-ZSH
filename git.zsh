@@ -1,8 +1,3 @@
-# Github Access Token
-# - Uncomment the variable below and add your token if you wish to use github.
-# - Tokens can be generated here: https://github.com/settings/applications#personal-access-tokens
-# GITHUB_ACCESS_TOKEN = <your token>;
-
 # Git Init
 # - Initializes git in the current directory, creates a README and .gitignore
 # Usage: gint <name> <url>
@@ -16,9 +11,11 @@ gint() {
         then
             git remote add $1 $2
     else
-        echo "$fg[red]To add a remote repository use the following command:"
-        echo "git remote add origin https://example.com/user/repo.git"
+        print -P "$FG[208]To add a remote repository use the following command:\n$FX[reverse]git remote add origin https://example.com/user/repo.git$FX[reset]"
     fi
+
+    message=".git created in "$(cpwd)
+    send-notification $message "Git Initialize"
 }
 
 # Github Init
@@ -28,7 +25,7 @@ gint() {
 # Usage: ghint <api key>:<value>
 # Example: $ ghint name:"My Repository" description:"this is my repository, it's a very fine one."
 ghint() {
-    # gh-has-access-token;
+    gh-has-access-token;
 
     if [[ ! -z $@ ]];
         then
@@ -94,7 +91,7 @@ gh-create-repo() {
             gh-has-access-token;
     else
         echo "$fg[red]An argument of 'name:\"Repository Name\"' is required to be able to create a repository on Github."
-        kill -INT $$
+        die
     fi
 
     # Create Github Repo
@@ -151,6 +148,6 @@ gh-has-access-token() {
 
     if [[ -z $GITHUB_ACCESS_TOKEN ]];
         then
-            kill -INT $$
+            die
     fi
 }

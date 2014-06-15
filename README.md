@@ -1,20 +1,20 @@
 # Ampersandwich Zsh Files
 These are just a collection of custom Zsh scripts that I have begun to write and thought might be worth sharing.
 
+## Requirements
+* [ZSH (duh...)](http://zsh.org)
+* [Oh My ZSH!](https://github.com/robbyrussell/oh-my-zsh)
+
 ## Setup
-To keep the scripts separate from my main `.zshrc` file I will be adding each one to it’s own grouped file based on it’s function. For example git based functionality resides in the git.zsh file.
-
-To add these to your zsh setup simply add the following to your `~/.zshrc` file for each that you require: `source ~/<filepath>.zsh`
-
-For example: `source ~/.zsh/git.zsh`
+To setup these scripts for use with your zsh environment, first make sure you have the most recent version of [ZSG](http://zsh.org) and [Oh My ZSH!](https://github.com/robbyrussell/oh-my-zsh). Once you have made sure that you're up to date, copy the `config-example.zsh`, edit the variables and settings that you require and save as `config.zsh` in the same directory. Then add `amper-init.zsh` to the bottom of (or at least below `source $ZSH/oh-my-zsh.sh`) your `~/.zshrc` file.
 
 You will end up with an `~/.zshrc` file that looks a bit like this:
 ```
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="agnoster"
 DEFAULT_USER=“you”
-source ~/.zshvars
-source ~/.zsh/git.zsh
+source $ZSH/oh-my-zsh.sh
+source ~/.zsh/amper-init.zsh
 …
 ```
 ###### Github
