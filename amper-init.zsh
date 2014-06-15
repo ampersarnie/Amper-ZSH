@@ -35,7 +35,7 @@ load-files() {
 
     for file in "$LOAD_FILES[@]"
     do
-        current_file=$SCRIPT_SOURCE$file".zsh"
+        current_file=$SCRIPT_SOURCE"/"$file".zsh"
 
         if [[ -e $current_file ]];
             then
