@@ -44,6 +44,10 @@ load-files() {
                 source $current_file
         fi
     done
+
+    # Get OS-specific files.
+    os=$(this-os)
+    source $SCRIPT_SOURCE"/"$os".zsh"
 }
 
 load-files
