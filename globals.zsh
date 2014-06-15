@@ -54,3 +54,7 @@ cpwd() {
 die() {
     kill -INT $$
 }
+
+clear-term-logs() {
+    sudo rm -rf /private/var/log/asl/*.asl
+}
