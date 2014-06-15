@@ -55,6 +55,31 @@ ghint() {
 # Example: $ gh-create-repo name:"My Repository" description:"this is my repository, it's a very fine one."
 gh-create-repo() {
 
+    request=$(gh-create-request $@)
+
+    # If $hasname is true then check for access token,
+    # otherwise echo message and ctrl-c
+    if $hasname
+        then
+            gh-has-access-token;
+    else
+        print -P "${message_error}An argument of 'name:\"<Repository Name>\"' is required to be able to create a repository on Github."
+        die
+    fi
+
+    # Create Github Repo
+    output=$(curl -s -u $GITHUB_ACCESS_TOKEN":x-oauth-basic" https://api.github.com/user/repos -d $request 2>&1)
+    sshurl=$(echo $output | egrep -o "\"ssh_url\": \"(.*)\"," | sed -E "s/^\"ssh_url\": \"(.*)\",/\1/")
+
+    if [ "$sshurl" ];
+        then
+            print -P $message_none$sshurl
+    else
+        print -P "${message_error}There was a problem creating the repo on Github."
+    fi
+}
+
+gh-create-request() {
     hasname=false
 
     # Create the request JSON by looping through all passed
@@ -83,26 +108,7 @@ gh-create-repo() {
     done
     request=$request"}"
 
-    # If $hasname is true then check for access token,
-    # otherwise echo message and ctrl-c
-    if $hasname
-        then
-            gh-has-access-token;
-    else
-        print -P "${message_error}An argument of 'name:\"<Repository Name>\"' is required to be able to create a repository on Github."
-        die
-    fi
-
-    # Create Github Repo
-    output=$(curl -s -u $GITHUB_ACCESS_TOKEN":x-oauth-basic" https://api.github.com/user/repos -d $request 2>&1)
-    sshurl=$(echo $output | egrep -o "\"ssh_url\": \"(.*)\"," | sed -E "s/^\"ssh_url\": \"(.*)\",/\1/")
-
-    if [ "$sshurl" ];
-        then
-            print -P $message_none$sshurl
-    else
-        print -P "${message_error}There was a problem creating the repo on Github."
-    fi
+    echo $request
 }
 
 # Commit All The Things
