@@ -6,7 +6,7 @@ These are just a collection of custom Zsh scripts that I have begun to write and
 * [Oh My ZSH!](https://github.com/robbyrussell/oh-my-zsh)
 
 ## Setup
-To setup these scripts for use with your zsh environment, first make sure you have the most recent version of [ZSG](http://zsh.org) and [Oh My ZSH!](https://github.com/robbyrussell/oh-my-zsh). Once you have made sure that you're up to date, copy the `config-example.zsh`, edit the variables and settings that you require and save as `config.zsh` in the same directory. Then add `amper-init.zsh` to the bottom of (or at least below `source $ZSH/oh-my-zsh.sh`) your `~/.zshrc` file.
+To setup these scripts for use with your zsh environment, first make sure you have the most recent version of [ZSH](http://zsh.org) and [Oh My ZSH!](https://github.com/robbyrussell/oh-my-zsh). Once you have made sure that you're up to date, copy the `config-example.zsh`, edit the variables and settings that you require and save as `config.zsh` in the same directory. Then add `amper-init.zsh` to the bottom of (or at least below `source $ZSH/oh-my-zsh.sh`) your `~/.zshrc` file.
 
 You will end up with an `~/.zshrc` file that looks a bit like this:
 ```
