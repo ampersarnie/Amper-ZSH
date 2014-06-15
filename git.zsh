@@ -54,21 +54,11 @@ ghint() {
 # Usage: gh-create-repo <api key>:<value>
 # Example: $ gh-create-repo name:"My Repository" description:"this is my repository, it's a very fine one."
 gh-create-repo() {
-
-    request=$(gh-create-request $@)
-
-    # If $hasname is true then check for access token,
-    # otherwise echo message and ctrl-c
-    if $hasname
-        then
-            gh-has-access-token;
-    else
-        print -P "${message_error}An argument of 'name:\"<Repository Name>\"' is required to be able to create a repository on Github."
-        die
-    fi
+    gh-create-request $@
+    gh-check-request-name
 
     # Create Github Repo
-    output=$(curl -s -u $GITHUB_ACCESS_TOKEN":x-oauth-basic" https://api.github.com/user/repos -d $request 2>&1)
+    output=$(curl -s -u $GITHUB_ACCESS_TOKEN":x-oauth-basic" https://api.github.com/user/repos -d $gh_request[1] 2>&1)
     sshurl=$(echo $output | egrep -o "\"ssh_url\": \"(.*)\"," | sed -E "s/^\"ssh_url\": \"(.*)\",/\1/")
 
     if [ "$sshurl" ];
@@ -77,6 +67,22 @@ gh-create-repo() {
     else
         print -P "${message_error}There was a problem creating the repo on Github."
     fi
+}
+
+gh_request=""
+
+gh-check-request-name() {
+    # If $hasname is true then check for access token,
+    # otherwise echo message and ctrl-c
+    if $gh_request[2]
+        then
+            gh-has-access-token;
+    else
+        print -P "${message_error}An argument of 'name:\"<Repository Name>\"' is required to be able to create a repository on Github."
+        die
+    fi
+
+    unset gh_request
 }
 
 gh-create-request() {
@@ -108,7 +114,7 @@ gh-create-request() {
     done
     request=$request"}"
 
-    echo $request
+    gh_request=("$request" "$hasname")
 }
 
 # Commit All The Things
