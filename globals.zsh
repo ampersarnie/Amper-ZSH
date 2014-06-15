@@ -51,12 +51,20 @@ send-message() {
                     MOBILE_NUMBER=$2
             fi
 
+            if [[ -z $MOBILE_NUMBER ]];
+                then
+                    print -P "${message_error} MOBILE_NUMBER is not set. Add it to your ${SCRIPT_SOURCE}/config.zsh"
+                    return 1
+            fi
+
             messagestr="tell application \"messages\"
                 send \"$1\" to buddy \"$MOBILE_NUMBER\" of service \"E:$ICLOUD_EMAIL\"
             end tell"
 
             osascript -e $messagestr
             send-notification "Sent a message to $MOBILE_NUMBER" "Send Message"
+
+            unset MOBILE_NUMBER
     fi
 }
 

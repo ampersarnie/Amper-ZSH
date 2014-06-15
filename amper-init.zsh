@@ -25,6 +25,8 @@ load-files() {
             return 1
     fi
 
+    source $SCRIPT_SOURCE"/config.zsh"
+
     # If LOAD_FILES is not defined, load all.
     if [[ -z $LOAD_FILES ]];
         then
