@@ -1,3 +1,5 @@
+# This OS
+# - Outputs the current Operating System in lowercase.
 this-os() {
     platform='unknown'
     unamestr=$(uname)
@@ -15,6 +17,11 @@ this-os() {
     echo $platform
 }
 
+# Send Notification
+# - Sends a Notification Center message if using OSX.
+# ! OSX Only.
+# Usage: send-notification <message> [<title>]
+# Example: send-notification "Hello world\nMy Script is complete." "My Script"
 send-notification() {
     if [[ $(this-os) == "osx" && ! -z $1 ]];
         then
@@ -30,6 +37,12 @@ send-notification() {
     fi
 }
 
+# Send Message
+# - Sends a message using OSX's Messages App
+# ! OSX Only.
+# ! Sends to self if no recipient provided.
+# Usage: send-message <message> [<recipient>]
+# Example: send-message "I'll see you at 4." "+44712345678"
 send-message() {
     if [[ $(this-os) == "osx" && ! -z $1 ]];
         then
@@ -47,14 +60,20 @@ send-message() {
     fi
 }
 
+# Current Working Directory
+# - Shows the current working directory without the full path.
 cpwd() {
     echo "${PWD##*/}"
 }
 
+# Die die die
+# - Kills off the current process.
 die() {
     kill -INT $$
 }
 
+# Clear Terminal Logs
+# - Deletes all terminal logs - useful if prompt is slow.
 clear-term-logs() {
     sudo rm -rf /private/var/log/asl/*.asl
 }
