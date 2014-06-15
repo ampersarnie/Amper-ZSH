@@ -15,7 +15,7 @@ local message_warning=$colour_orange"Warning"$amper_message_postfix
 local message_error=$colour_red"Error"$amper_message_postfix
 
 local message_none=$colour_blue" ➜ "
-local message_question$colour_blue"message_question"$amper_message_postfix
+local message_question=$colour_blue"Question"$amper_message_postfix
 
 load-files() {
     # Check that config exists

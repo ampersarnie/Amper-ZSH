@@ -1,5 +1,4 @@
 # Ampersandwich ZSH Script
-# AMPER_SCRIPT_DIR="<full path to directory>"
 # LOAD_FILES=("git" "web-dev" "commander")
 
 # globals.zsh VARIABLES
