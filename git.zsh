@@ -1,3 +1,5 @@
+gh_request=""
+
 # Git Init
 # - Initializes git in the current directory, creates a README and .gitignore
 # Usage: gint <name> <url>
@@ -69,20 +71,72 @@ gh-create-repo() {
     fi
 }
 
-gh_request=""
+# Github Edit Repository
+# - Makes an API call to Github and edits the repository with the given parameters
+# - Requires API Token to be set.
+# Usage: gh-edit-repo <repo name> <repo owner> <api key>:<value>
+# Example: $ gh-edit-repo "Some Repo" "ampersarnie" name:"My Repository" description:"this is my repository, it's a very fine one."
+gh-edit-repo() {
+    if [[ ! -z $1 && ! -z $2 ]];
+        then
+            current_name=$(echo $1 | grep -E "^(.*):(.*)$")
+            owner=$(echo $2 | grep -E "^(.*):(.*)$")
+            current_name_len=${#current_name}
+            owner_len=${#owner}
+    fi
 
+    if [[ $current_name_len == "0" ]] && [[ $owner_len == "0" ]];
+        then
+            print -P "${message_default}Updating \"${1}\" by $2"
+            current_name=$1
+            owner=$2
+            shift $@[0] # Remove the current name
+            shift $@[0] # Remove the owner
+    else
+        print -P "${message_error}Please provide the current repository name as the first argument and owner as the second."
+        die
+    fi
+
+    gh-create-request $@
+
+    # Edit Github Repo
+    output=$(curl PATCH -s -u $GITHUB_ACCESS_TOKEN":x-oauth-basic" https://api.github.com/repos/$owner/$current_name -d $gh_request[1] 2>&1)
+    sshurl=$(echo $output | egrep -o "\"ssh_url\": \"(.*)\"," | sed -E "s/^\"ssh_url\": \"(.*)\",/\1/")
+
+    if [ "$sshurl" ];
+        then
+            print -P $message_none$sshurl
+    else
+        print -P "${message_error}There was a problem editing the \"$current_name\" repo on Github."
+    fi
+
+}
+
+# Github Get Repository
+# - Makes an API call to retrieve the information of the given repository
+# - Requires API Token to be set.
+# ! Only Returns SSH location at the moment
+# Usage: gh-get-repo <repo name> <repo owner>
+# Example: $ gh-get-repo "Some Repo" "ampersarnie"
+gh-get-repo() {
+    gh-has-access-token
+    output=$(curl -s -u $GITHUB_ACCESS_TOKEN":x-oauth-basic" https://api.github.com/repos/$1/$2  2>&1)
+    sshurl=$(echo $output | egrep -o "\"ssh_url\": \"(.*)\"," | sed -E "s/^\"ssh_url\": \"(.*)\",/\1/")
+
+    echo $sshurl
+}
+
+# Checks if the request has a required "name" parameter
 gh-check-request-name() {
     # If $hasname is true then check for access token,
     # otherwise echo message and ctrl-c
-    if $gh_request[2]
+    if [[ $gh_request[2] -eq "true" ]];
         then
             gh-has-access-token;
     else
         print -P "${message_error}An argument of 'name:\"<Repository Name>\"' is required to be able to create a repository on Github."
         die
     fi
-
-    unset gh_request
 }
 
 gh-create-request() {
