@@ -18,7 +18,7 @@ source ~/.zsh/amper-init.zsh
 …
 ```
 ###### Github
-A couple of these scripts require a Github API Access Token using the `GITHUB_ACCESS_TOKEN` variable. You can [generate a token here](https://github.com/settings/applications#personal-access-tokens). Define your token either within your `config.zsh` file.
+A couple of these scripts require a Github API Access Token using the `GITHUB_ACCESS_TOKEN` variable. You can [generate a token here](https://github.com/settings/applications#personal-access-tokens). Define your token within your `config.zsh` file.
 
 # How to use the Commands
 ### git.zsh
