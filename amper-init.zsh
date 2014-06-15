@@ -1,17 +1,24 @@
 # The directory of the .zsh scripts
 SCRIPT_SOURCE=${0%/*}
 
-local amper_message_prefix=" ➜\n"
+local amper_message_postfix=" ➜\n"
 
-# Colours
-local cwarning="$FG[208]%}Warning"$amper_message_prefix
-local cerror="$FG[124]Error"$amper_message_prefix
+local colour_blue="$FG[027]"
+local colour_green="$FG[040]"
+local colour_orange="$FG[208]"
+local colour_red="$FG[124]"
+
+# Message Colours
+local message_default=$colour_blue"Message"$amper_message_postfix
+local message_complete=$colour_green"Complete"$amper_message_postfix
+local message_warning=$colour_orange"Warning"$amper_message_postfix
+local message_error=$colour_red"Error"$amper_message_postfix
 
 load-files() {
     # Check that config exists
     if [[ ! -e $SCRIPT_SOURCE"/config.zsh" ]];
         then
-            print -P "${cerror}config.zsh does not exist in ${SCRIPT_SOURCE}\nPlease copy config-example.zsh and add the appropriate settings.$FX[reset]"
+            print -P "${message_error}config.zsh does not exist in ${SCRIPT_SOURCE}\nPlease copy config-example.zsh and add the appropriate settings.$FX[reset]"
             return 1
     fi
 
