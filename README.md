@@ -63,17 +63,6 @@ The `gint` command allows you to create a git repository within the current work
 ###### Create a repository and add remote
 `gint origin https://example.com/username/repo`
 
-#### ghint [\<api key name>:\<your value> … \] (Github Init)
-The `ghint` command is very much the same as the `gint` comment except it will also create a Github repository using the passed arguments. `ghint` requires a minimum argument of `name:<value>`.
-###### Create a repository with the name “My Amazing Repo”:
-`ghint name:”My Amazing Repo”`
-###### Create a private repository
-`ghint name:”Private Parts” private:true`
-###### Create a repository without a wiki and add a description
-`ghint name:”Awesome Source” has_wiki:false description:”This is where I add all the awesome.”`
-
-A whole list of accepted API Key Names can be found [here](https://developer.github.com/v3/repos/#create).
-
 #### catt [\<commit message>\] (Commit All The Things)
 `catt` allows you to commit every file in the current working repository. Once committed the log for that commit will be outputted.
 ###### Commit Everything:
@@ -83,3 +72,33 @@ A whole list of accepted API Key Names can be found [here](https://developer.git
 `satt` will allow you to easily stash all the files in the current working repository with a given name. The output will be list of all files added to the stash.
 ###### Stash Everything:
 `satt “stash-ah-ahhh”`
+
+## github.zsh
+The following commands are Github specific and more often than not require usage of the API along with API Key Names. A whole list of accepted API Key Names can be found [here](https://developer.github.com/v3/repos/#create).
+
+#### ghint [\<api key name>:\<your value> … \] (Github Init)
+The `ghint` command is very much the same as the `gint` comment except it will also create a Github repository using the passed arguments. _`ghint` requires a minimum argument of `name:<value>`._
+###### Create a repository with the name “My Amazing Repo”:
+`ghint name:”My Amazing Repo”`
+###### Create a private repository
+`ghint name:”Private Parts” private:true`
+###### Create a repository without a wiki and add a description
+`ghint name:”Awesome Source” has_wiki:false description:”This is where I add all the awesome.”`
+
+#### gh-create-repo \<api key name>:\<your value> …
+Makes an API call to Github, creates the given repository name,
+and processes any other passed arguments, then outputs the SSH URL. _`gh-create-repo` requires a minimum argument of `name:<value>`._
+###### See examples for `ghint` command
+
+#### gh-edit-repo <repo name> <repo owner> \<api key name>:\<your value> …
+Makes an API call to Github and edits the repository with the given parameters.
+###### Edit the “Amper ZSH” repo and change the description.
+`gh-edit-repo “Amper-ZSH” “ampersarnie” description:”Whoop, changed from terminal!”`
+###### Make the “Amper ZSH” repo private
+`gh-edit-repo “Amper-ZSH” “ampersarnie” private:true
+
+#### gh-get-repo <repo name> <repo owner>
+Makes an API call to retrieve the information of the given repository.
+_Currently only returns the SSH Url_
+###### Get the details of the “Amper-ZSH” repo
+`gh-get-repo “Amper-ZSH” “ampersarnie”`
