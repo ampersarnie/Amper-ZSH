@@ -35,14 +35,14 @@ Kills off the current process without exiting terminal.
 Deletes all terminal logs - useful if prompt is slow.
 
 ## osx.zsh
-#### send-notification <message> [<title>]
+#### send-notification \<message> [\<title>]
 Sends a message to OSX’s Notification Center.
 ###### Send a message:
 `send-notification “Hello world.”`
 ###### Send a message with a title:
 `send-notification "Hello world\nMy Script is complete." "My Script"`
 
-#### send-message <message> [<recipient>]
+#### send-message \<message> [\<recipient>]
 Sends a message using OSX's Messages App. _Sends to self if no recipient provided._
 ###### Send a message to yourself
 `send-message “Just a reminder that people are awesome.”`
