@@ -30,7 +30,7 @@ load-files() {
     # If LOAD_FILES is not defined, load all.
     if [[ -z $LOAD_FILES ]];
         then
-            LOAD_FILES=("git" "web-dev" "commander")
+            LOAD_FILES=("git" "web-dev" "commander" "github")
     fi
 
     LOAD_FILES+=("globals")
