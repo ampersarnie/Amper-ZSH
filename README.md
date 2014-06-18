@@ -43,8 +43,6 @@ Sends a message to OSX’s Notification Center.
 `send-notification "Hello world\nMy Script is complete." "My Script"`
 ###### Piping into send-notification
 `echo “A message to be piped” | send-notification`
-###### Piping into send-notification with a number
-`echo “You've got your big G’s, I’ve got my hash pipe” | send-notification “+447123456789”`
 
 #### send-message \<message> [\<recipient>]
 Sends a message using OSX's Messages App. _Sends to self if no recipient provided._
