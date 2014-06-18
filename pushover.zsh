@@ -24,7 +24,7 @@ send-to-pushover() {
 
             output=$(curl POST -s https://api.pushover.net/1/messages.json -d $po_data 2>&1)
             po_status=$(echo $output | sed -E -n 's/.*"status":"{0,1}([^,"]+)(,|").*/\1/p')
-            po_requçest=$(echo $output | sed -E -n 's/.*"request":"{0,1}([^,"]+)(,|").*/\1/p')
+            po_request=$(echo $output | sed -E -n 's/.*"request":"{0,1}([^,"]+)(,|").*/\1/p')
 
             print -P "${message_complete}Pushover - sent the message: \"${1}\" and recieved the receipt id of \'${po_request}\'"
 
