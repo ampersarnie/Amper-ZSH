@@ -41,6 +41,10 @@ Sends a message to OSX’s Notification Center.
 `send-notification “Hello world.”`
 ###### Send a message with a title:
 `send-notification "Hello world\nMy Script is complete." "My Script"`
+###### Piping into send-notification
+`echo “A message to be piped” | send-notification`
+###### Piping into send-notification with a number
+`echo “You've got your big G’s, I’ve got my hash pipe” | send-notification “+447123456789”`
 
 #### send-message \<message> [\<recipient>]
 Sends a message using OSX's Messages App. _Sends to self if no recipient provided._
@@ -102,3 +106,13 @@ Makes an API call to retrieve the information of the given repository.
 _Currently only returns the SSH Url_
 ###### Get the details of the “Amper-ZSH” repo
 `gh-get-repo “Amper-ZSH” “ampersarnie”`
+
+## pushover.zsh
+[Pushover](https://pushover.net) is a web API that allows you to send Push Notification to a user or group of users. The commands used in these scripts will require a set of API keys from the [Pushover website](https://pushover.net).
+
+#### send-to-pushover <message>
+Allows you to sends a message to the Pushover API.
+###### send a message
+`send-to-pushover “Ah, push it. Ooooh, baby, baby.”`
+###### pipe a message
+echo “When I was young I knew everything” | send-to-pushover

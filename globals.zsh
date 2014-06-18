@@ -35,6 +35,12 @@ clear-term-logs() {
     sudo rm -rf /private/var/log/asl/*.asl
 }
 
+# URI Escape
+# - Escapes/encodes data for use in a URI.
+uri-escape() {
+    echo "$1" | perl -MURI::Escape -ne 'chomp;print uri_escape($_),"\n"'
+}
+
 # Get Piped
 # - Get's piped data and allows it to be used elsewhere.
 get-piped() {
