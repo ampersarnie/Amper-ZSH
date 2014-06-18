@@ -34,3 +34,15 @@ die() {
 clear-term-logs() {
     sudo rm -rf /private/var/log/asl/*.asl
 }
+
+get-piped() {
+    piped=''
+    if [ ! -t 0 ];
+        then
+            while read data;
+                do
+                    piped=$data
+            done
+    fi
+    echo $piped
+}
