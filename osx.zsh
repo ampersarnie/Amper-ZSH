@@ -4,6 +4,11 @@
 # Usage: send-notification <message> [<title>]
 # Example: send-notification "Hello world\nMy Script is complete." "My Script"
 send-notification() {
+    # Replace double quotes with single quotes
+    # because AppleScript doesn't like them
+    # and it's a pain in the arse to fix right now.
+    message=$(echo $message | sed -e s/\"/\'/g)
+
     if [[ $(this-os) == "osx" && ! -z $1 ]];
         then
             title=''
