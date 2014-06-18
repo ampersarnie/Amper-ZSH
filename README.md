@@ -113,4 +113,4 @@ Allows you to sends a message to the Pushover API.
 ###### send a message
 `send-to-pushover “Ah, push it. Ooooh, baby, baby.”`
 ###### pipe a message
-echo “When I was young I knew everything” | send-to-pushover
+`echo “When I was young I knew everything” | send-to-pushover`
