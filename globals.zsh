@@ -35,6 +35,8 @@ clear-term-logs() {
     sudo rm -rf /private/var/log/asl/*.asl
 }
 
+# Get Piped
+# - Get's piped data and allows it to be used elsewhere.
 get-piped() {
     piped=''
     if [ ! -t 0 ];
