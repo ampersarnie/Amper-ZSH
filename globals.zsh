@@ -54,3 +54,9 @@ get-piped() {
     fi
     echo $piped
 }
+
+# App Path
+# - Returns the Path of the app if it is running.
+app-path() {
+    echo $(ps -e -o comm | grep $1)
+}
