@@ -4,6 +4,15 @@
 # Usage: send-notification <message> [<title>]
 # Example: send-notification "Hello world\nMy Script is complete." "My Script"
 send-notification() {
+    if [[ ! -z $(app-path "Growl") && ( -z "$USE_GROWL" && "$USE_GROWL" = true ) ]]
+        then
+            growl-notification $1 $2
+    else
+        notification-center $1 $2
+    fi
+}
+
+notification-center() {
     message=$(get-piped)
 
     if [ -z "$message" ];
@@ -61,7 +70,7 @@ send-message() {
     fi
 }
 
-growl() {
+growl-notification() {
     message=$(get-piped)
 
     if [ -z "$message" ];

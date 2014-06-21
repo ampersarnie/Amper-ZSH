@@ -1,4 +1,4 @@
-# globals.zsh VARIABLES
+# osx.zsh VARIABLES
 # =====================
 # iCloud Email address
 # - The email address associated with your iCloud account.
@@ -7,6 +7,10 @@
 # Mobile phone number
 # - The phone number which you wish messages to appear from.
 # MOBILE_NUMBER=""
+#
+# Use Growl
+# - Whether to use growl as the default notification type.
+# USE_GROWL=false
 
 # git.zsh VARIABLES
 # =================
