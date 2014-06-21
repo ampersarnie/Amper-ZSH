@@ -60,3 +60,42 @@ send-message() {
             unset MOBILE_NUMBER
     fi
 }
+
+growl() {
+    message=$(get-piped)
+
+    if [ -z "$message" ];
+        then
+            message=$1
+    fi
+
+    # Replace double quotes with single quotes
+    # because AppleScript doesn't like them
+    # and it's a pain in the arse to fix right now.
+    message=$(echo $message | sed -e s/\"/\'/g)
+
+    if [[ $(this-os) == "osx" && ! -z $1 ]];
+        then
+            title=''
+
+            if [[ ! -z $2 ]];
+                then
+                    title=$2
+            fi
+
+            growlScript="tell application \"System Events\"
+                set isRunning to (count of (every process whose bundle identifier is \"com.Growl.GrowlHelperApp\")) > 0
+            end tell
+
+            if isRunning then
+                tell application id \"com.Growl.GrowlHelperApp\"
+                    set the allNotificationsList to {\"Amper ZSH\"}
+                    set the enabledNotificationsList to {\"Amper ZSH\"}
+                    register as application \"Amper ZSH\" all notifications allNotificationsList default notifications enabledNotificationsList icon of application \"Script Editor\"
+                    notify with name \"Amper ZSH\" title \"$title\" description \"$message\" application name \"Amper ZSH\"
+                end tell
+            end if"
+
+            osascript -e $growlScript
+    fi
+}
