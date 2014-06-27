@@ -3,6 +3,8 @@ SCRIPT_SOURCE=${0%/*}
 
 local amper_message_postfix=" ➜\n"
 
+# Text Colours
+local colour_white="$FG[255]"
 local colour_blue="$FG[027]"
 local colour_green="$FG[040]"
 local colour_orange="$FG[208]"
@@ -14,7 +16,7 @@ local message_complete=$colour_green"Complete"$amper_message_postfix
 local message_warning=$colour_orange"Warning"$amper_message_postfix
 local message_error=$colour_red"Error"$amper_message_postfix
 
-local message_none=$colour_blue" ➜ "
+local message_none=$colour_green" ➜ "
 local message_question=$colour_blue"Question"$amper_message_postfix
 
 load-files() {
@@ -36,13 +38,13 @@ load-files() {
     LOAD_FILES+=("globals")
 
     for file in "$LOAD_FILES[@]"
-    do
-        current_file=$SCRIPT_SOURCE"/"$file".zsh"
+        do
+            current_file=$SCRIPT_SOURCE"/"$file".zsh"
 
-        if [[ -e $current_file ]];
-            then
-                source $current_file
-        fi
+            if [[ -e $current_file ]];
+                then
+                    source $current_file
+            fi
     done
 
     # Get OS-specific files.
@@ -51,3 +53,10 @@ load-files() {
 }
 
 load-files
+
+# For development purposes
+reload-zsh() {
+    clear
+    . ~/.zshrc
+    print -P "${message_none}Reloaded ZSH.$FX[reset]"
+}
