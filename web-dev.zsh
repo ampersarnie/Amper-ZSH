@@ -89,6 +89,8 @@ apache-add-vhost() {
     add-host "127.0.0.1" $server_name
 
     print -P "$FG[040]Added Virtual Host to $FX[reverse]$HTTPD_VHOSTS_FILE$FX[reset]"
+    print -P "$FG[040]Restarting Apache...$FX[reset]"
+    sudo apachectl restart
 }
 
 is-ip() {
