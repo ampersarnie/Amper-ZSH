@@ -76,7 +76,8 @@ apache-add-vhost() {
         print -P "$FG[124]Not setting a Server Alias$FX[reset]"
     fi
 
-    content=$content"</VirtualHost>"
+    content=$content"\n\t<Directory ${doc_root}>\n\t\tOptions Indexes FollowSymLinks\n\t\tAllowOverride All\n\t\tOrder allow,deny\n\t\tAllow from all\n\t</Directory>"
+    content=$content"</VirtualHost>\n\n"
 
     touch "/tmp/httpd-vhosts.tmp"
     cat $HTTPD_VHOSTS_FILE >> "/tmp/httpd-vhosts.tmp"
