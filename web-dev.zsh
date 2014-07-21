@@ -1,6 +1,11 @@
 DEFAULT_HOSTS_FILE="/etc/hosts"
 DEFAULT_HTTPD_VHOSTS_FILE="/private/etc/apache2/extra/httpd-vhosts.conf"
 
+if [[ -z "$HOSTS_FILE" ]];
+    then
+        HOSTS_FILE=$DEFAULT_HOSTS_FILE;
+fi
+
 # Composer, Laravel/Artisan and Vagrant Aliases
 # Add 'source ~/.zsh_alias' to the bottom of ~/.zshrc to use
 # Can also add to these to /Homestead/aliases for us with your Homestead VM
@@ -31,16 +36,11 @@ alias vssh='vagrant ssh'
 alias vkill='vagrant destroy'
 
 # General
-alias edit-host="sudo edit /etc/hosts"
+alias edit-host="sudo nano "$HOSTS_FILE
 alias showhidden='defaults write com.apple.finder AppleShowAllFiles True; killall Finder'
 alias hidehidden='defaults write com.apple.finder AppleShowAllFiles False; killall Finder'
 
 add-host() {
-    if [[ -z "$HOSTS_FILE" ]];
-        then
-            HOSTS_FILE=$DEFAULT_HOSTS_FILE;
-    fi
-
     if [[ ! -z "$2" ]];
         then
             ip=$(is-ip $1)
