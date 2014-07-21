@@ -1,6 +1,40 @@
 DEFAULT_HOSTS_FILE="/etc/hosts"
 DEFAULT_HTTPD_VHOSTS_FILE="/private/etc/apache2/extra/httpd-vhosts.conf"
 
+# Composer, Laravel/Artisan and Vagrant Aliases
+# Add 'source ~/.zsh_alias' to the bottom of ~/.zshrc to use
+# Can also add to these to /Homestead/aliases for us with your Homestead VM
+# by @JamesMills
+# https://gist.github.com/jamesmills/8a8d7d63abb6b51742ec
+
+# Composer
+alias csu="composer self-update"
+alias cu="composer update"
+alias ci="composer install"
+alias cda="composer dump-autoload -o"
+
+# Laravel / Artisan
+alias pa="php artisan"
+alias par="php artisan routes"
+alias pam="php artisan migrate"
+alias pam:r="php artisan migrate:refresh"
+alias pam:roll="php artisan migrate:rollback"
+alias pam:rs="php artisan migrate:refresh --seed"
+alias pda="php artisan dumpautoload"
+
+# Vagrant
+alias v='vagrant version && vagrant global-status'
+alias vst='vagrant status'
+alias vup='vagrant up'
+alias vdo='vagrant halt'
+alias vssh='vagrant ssh'
+alias vkill='vagrant destroy'
+
+# General
+alias edit-host="sudo edit /etc/hosts"
+alias showhidden='defaults write com.apple.finder AppleShowAllFiles True; killall Finder'
+alias hidehidden='defaults write com.apple.finder AppleShowAllFiles False; killall Finder'
+
 add-host() {
     if [[ -z "$HOSTS_FILE" ]];
         then
