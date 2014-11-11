@@ -18,11 +18,11 @@ gint() {
     send-notification $message "Git Initialize"
 }
 
-# Commit All The Things
+# Git Commit
 # - Commits and pushes everything in the current repo
 # Usage: catt <commit message>
 # Example: $ catt "Fix all the things!"
-catt() {
+gc() {
     git init -q
     git add --all
     git commit -am $1 -q
@@ -32,11 +32,11 @@ catt() {
     send-notification "Pushed commit:\n\"$1\"" "Git"
 }
 
-# Stash All The Things
+# Git Stash
 # - Stashes everything in the current repo, then outputs files in stash.
 # Usage: satt <stash name>
 # Example: $ satt "Experiments"
-satt() {
+gs() {
     git init
     git add --all
     git stash save $1
