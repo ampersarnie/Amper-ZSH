@@ -28,6 +28,8 @@ catt() {
     git commit -am $1 -q
     git push -q
     log=$(git log --name-status HEAD^..HEAD) | echo $log
+
+    send-notification "Pushed commit:\n\"$1\"" "Git"
 }
 
 # Stash All The Things
