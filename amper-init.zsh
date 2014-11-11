@@ -32,7 +32,7 @@ load-files() {
     # If LOAD_FILES is not defined, load all.
     if [[ -z $LOAD_FILES ]];
         then
-            LOAD_FILES=("git" "web-dev" "github" "pushover" "mysql")
+            LOAD_FILES=($(find plugins -type f -name "*.zsh"))
     fi
 
     LOAD_FILES+=("globals")
@@ -49,7 +49,7 @@ load-files() {
 
     # Get OS-specific files.
     os=$(this-os)
-    source $SCRIPT_SOURCE"/"$os".zsh"
+    source $SCRIPT_SOURCE"/plugins/os/"$os".zsh"
 }
 
 load-files
