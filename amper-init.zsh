@@ -28,14 +28,13 @@ load-files() {
     fi
 
     source $SCRIPT_SOURCE"/config.zsh"
+    source $SCRIPT_SOURCE"/globals.zsh"
 
     # If LOAD_FILES is not defined, load all.
     if [[ -z $LOAD_FILES ]];
         then
-            LOAD_FILES=($(find plugins -type f -name "*.zsh"))
+            LOAD_FILES=$(find "$SCRIPT_SOURCE"/plugins -type f -name "*.zsh")
     fi
-
-    LOAD_FILES+=("globals")
 
     for file in "$LOAD_FILES[@]"
         do
