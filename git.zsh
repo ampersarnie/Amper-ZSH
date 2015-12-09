@@ -50,3 +50,15 @@ gs() {
 gsl() {
     output=$(git stash show -p | grep 'diff'); echo $output | egrep -o " b\/(.*)"
 }
+
+# Git Archive
+# - Archives given branch and pushes changes to current repo
+# Usage: garchive <branch>
+garchive() {
+    git tag archive/$1 $1
+    git branch -D $1
+    git push --tags
+    git push origin :$1
+
+    send-notification "Archived:\n\"$1\"" "Git"
+}
