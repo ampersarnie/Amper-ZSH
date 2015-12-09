@@ -65,15 +65,20 @@ The `gint` command allows you to create a git repository within the current work
 ###### Create a repository and add remote
 `gint origin https://example.com/username/repo`
 
-#### catt [\<commit message>\] (Commit All The Things)
-`catt` allows you to commit every file in the current working repository. Once committed the log for that commit will be outputted.
+#### gc [\<commit message>\] (Git Commit)
+`gc` allows you to commit every file in the current working repository. Once committed the log for that commit will be outputted.
 ###### Commit Everything:
-`catt “ZOMG I COMMITTED EVERYTHING!”`
+`gc “ZOMG I COMMITTED EVERYTHING!”`
 
-#### satt [\<stash name>\] (Stash All The Things)
-`satt` will allow you to easily stash all the files in the current working repository with a given name. The output will be list of all files added to the stash.
+#### gs [\<stash name>\] (Git Stash)
+`gs` will allow you to easily stash all the files in the current working repository with a given name. The output will be list of all files added to the stash.
 ###### Stash Everything:
-`satt “stash-ah-ahhh”`
+`gs “stash-ah-ahhh”`
+
+#### garchive [\<branch>\] (Git Archive)
+`gs` allows for archiving a given branch via tags.
+###### Stash Everything:
+`gs feature/my-changes`
 
 ## github.zsh
 The following commands are Github specific and more often than not require usage of the API along with API Key Names. A whole list of accepted API Key Names can be found [here](https://developer.github.com/v3/repos/#create).
