@@ -35,6 +35,10 @@ alias vdo='vagrant halt'
 alias vssh='vagrant ssh'
 alias vkill='vagrant destroy'
 
+# Homestead
+alias hsup='homestead up'
+alias hsreboot='homestead halt && homestead up'
+
 # General
 alias edit-host="sudo nano "$HOSTS_FILE
 alias showhidden='defaults write com.apple.finder AppleShowAllFiles True; killall Finder'

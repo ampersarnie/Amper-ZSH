@@ -2,7 +2,7 @@
 # - Initializes git in the current directory, creates a README and .gitignore
 # Usage: gint <name> <url>
 # Example: $ gint origin https://example.com/user/repo.git
-gint() {
+ginit() {
     git init
     touch README.md
     touch .gitignore

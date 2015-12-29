@@ -28,28 +28,22 @@ load-files() {
     fi
 
     source $SCRIPT_SOURCE"/config.zsh"
+    source $SCRIPT_SOURCE"/globals.zsh"
 
     # If LOAD_FILES is not defined, load all.
     if [[ -z $LOAD_FILES ]];
         then
-            LOAD_FILES=("git" "web-dev" "github" "pushover" "mysql")
+            LOAD_FILES=($(find "$SCRIPT_SOURCE"/plugins -type f -name "*.zsh"))
     fi
 
-    LOAD_FILES+=("globals")
-
-    for file in "$LOAD_FILES[@]"
+    for file in ${LOAD_FILES[*]}
         do
-            current_file=$SCRIPT_SOURCE"/"$file".zsh"
-
-            if [[ -e $current_file ]];
-                then
-                    source $current_file
-            fi
+            source $file
     done
 
     # Get OS-specific files.
     os=$(this-os)
-    source $SCRIPT_SOURCE"/"$os".zsh"
+    source $SCRIPT_SOURCE"/plugins/os/"$os".zsh"
 }
 
 load-files

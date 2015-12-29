@@ -102,7 +102,7 @@ Makes an API call to Github and edits the repository with the given parameters.
 ###### Edit the “Amper ZSH” repo and change the description.
 `gh-edit-repo “Amper-ZSH” “ampersarnie” description:”Whoop, changed from terminal!”`
 ###### Make the “Amper ZSH” repo private
-`gh-edit-repo “Amper-ZSH” “ampersarnie” private:true
+`gh-edit-repo “Amper-ZSH” “ampersarnie” private:true`
 
 #### gh-get-repo <repo name> <repo owner>
 Makes an API call to retrieve the information of the given repository.
